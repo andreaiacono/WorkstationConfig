@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: true
+  
+  # to have an idea of the OS family value see 
+  # https://github.com/ansible/ansible/blob/560d3af09731293c59fb49f4b43e737efda2c001/lib/ansible/module_utils/facts/system/distribution.py#L511
+  
+  tasks:
+  
+  # Debian based systems (includes Ubuntu)
+  - import_tasks: debian/debian.yaml
+    when: ansible_os_family == 'Debian'
+
+  

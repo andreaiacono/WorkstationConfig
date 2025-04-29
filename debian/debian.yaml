@@ -1,0 +1,72 @@
+# Debian based installation script
+- name: Install packages
+  ansible.builtin.package:
+    name:
+      - git
+      - fuse
+      - nemo
+      - net-tools
+      - gnome-software
+      - gnome-tweaks
+      - pre-commit
+      - build-essential
+      - postgresql-client-common
+      - postgresql-client
+      - mypy
+      - lcov
+      - clang
+      - libfuse2
+      - sweethome3d
+      - gir1.2-gtop-2.0
+      - meld
+      - zenity
+      - exiftool
+      - retext
+      - curl
+      - golang
+      - vim
+      - python3
+      - sdkmanager
+      - nfs-common
+      - wike
+      - foliate
+      - gimp
+    state: present
+- name: Executes installation scripts
+  become: yes
+  become_user: andrea
+  ansible.builtin.shell: |
+    chmod 0755 ~/Dropbox/etc/*.sh 
+    chmod 0755 ~/Dropbox/etc/scripts/*.sh
+    mkdir ~/movies
+    xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+    dconf write /org/gnome/shell/extensions/panel-date-format/format "'%a, %b %d - %H:%M'"
+    echo 'export PS1="[\$(date +%H:%M:%S)] \[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[31m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]]\[\e[m\]\[\]\\$\[\e[m\] "' >> ~/.bashrc
+
+- name: Install Chrome
+  debugger: on_failed
+  ansible.builtin.shell: |
+    sudo apt-get install libxss1 libappindicator1 libindicator7
+    wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install /tmp/google-chrome*.deb
+    
+- name: Install Zoom
+  community.general.snap:
+    name:
+      - zoom-client
+    state: present
+  become: yes
+
+- name: Install VSCode
+  ansible.builtin.apt:
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+  become: yes
+
+- name: Install font packages
+  ansible.builtin.package:
+    name:
+      - fonts-jetbrains-mono
+      - fonts-yanone-kaffeesatz
+    state: present
+  become: yes
+
