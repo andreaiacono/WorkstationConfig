@@ -32,6 +32,7 @@
       - foliate
       - gimp
       - smplayer
+      - podman
     state: present
 - name: Executes installation scripts
   become: yes
