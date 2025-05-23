@@ -9,14 +9,13 @@ In order to run the ansible script, you need to install ansible. Here's the inst
 sudo apt update
 sudo apt install software-properties-common
 sudo add-apt-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible git
+sudo apt install ansible
 ```
-Then you need to clone this repository:
+Then you need to download this repository and run the playbook:
 ```bash
-git clone git@github.com:andreaiacono/WorkstationConfig.git
+wget https://github.com/andreaiacono/WorkstationConfig/archive/refs/heads/main.zip
+unzip main
+cd WorkstationConfig
+sudo ansible-playbook install.yaml
 ```
 
-And finally run the playbook:
-```bash
-sudo ansible-playbook WorkstationConfig/install.yaml
-```
