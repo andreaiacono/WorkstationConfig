@@ -33,6 +33,13 @@
       - gimp
       - smplayer
       - podman
+      - kstars
+      - ghex
+      - dconf-editor
+      - pdfarranger
+      - xpdf
+      - terminator
+      
     state: present
 - name: Executes installation scripts
   become: yes
