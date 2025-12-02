@@ -43,7 +43,6 @@
       - gradle
       - gramps
       - railway-gtk
-      - brave-browser
       - xournalpp
       - terminator
       - pipx
@@ -58,10 +57,9 @@
       - gnome-maps
       - gnome-screenshot
       - gnome-shell-extension-manager
-      - claude-desktop
       - clang
       - calibre
-      - brave-browser
+
     state: present
 
 - name: Executes installation scripts
@@ -81,7 +79,17 @@
     sudo apt-get install libxss1 libappindicator1 libindicator7
     wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install /tmp/google-chrome*.deb
-    
+
+
+- name: Install Brave
+  debugger: on_failed
+  ansible.builtin.shell: |
+    sudo apt install curl
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+    sudo apt update
+    sudo apt install brave-browser
+
 - name: Install Zoom and Restfox
   community.general.snap:
     name:
