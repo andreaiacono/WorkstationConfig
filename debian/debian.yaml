@@ -61,6 +61,7 @@
       - claude-desktop
       - clang
       - calibre
+      - brave-browser
     state: present
 
 - name: Executes installation scripts
