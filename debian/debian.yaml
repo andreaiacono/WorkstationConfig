@@ -10,6 +10,7 @@
       - gnome-tweaks
       - pre-commit
       - build-essential
+      - postgresql
       - postgresql-client-common
       - postgresql-client
       - mypy
@@ -39,8 +40,29 @@
       - pdfarranger
       - xpdf
       - terminator
-      
+      - gradle
+      - gramps
+      - railway-gtk
+      - brave-browser
+      - xournalpp
+      - terminator
+      - pipx
+      - pdfarranger
+      - npm
+      - ncat
+      - mypy
+      - markdown
+      - kanatest
+      - imagemagick
+      - icoutils
+      - gnome-maps
+      - gnome-screenshot
+      - gnome-shell-extension-manager
+      - claude-desktop
+      - clang
+      - calibre
     state: present
+
 - name: Executes installation scripts
   become: yes
   become_user: andrea
@@ -59,13 +81,14 @@
     wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install /tmp/google-chrome*.deb
     
-- name: Install Zoom
+- name: Install Zoom and Restfox
   community.general.snap:
     name:
       - zoom-client
+      - restfox
     state: present
   become: yes
-
+    
 - name: Install VSCode
   ansible.builtin.apt:
     deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
