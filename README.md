@@ -15,7 +15,7 @@ Then you need to download this repository and run the playbook:
 ```bash
 wget https://github.com/andreaiacono/WorkstationConfig/archive/refs/heads/main.zip
 unzip main
-cd WorkstationConfig
+cd WorkstationConfig-main
 sudo ansible-playbook install.yaml
 ```
 
